@@ -12,6 +12,8 @@ class HomeViewModel: ObservableObject {
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     
+    @Published var searchText: String = ""
+    
     private let dataService = CoinDataService()
     
     // this is made private because we don't want the callers

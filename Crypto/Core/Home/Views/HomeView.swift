@@ -23,6 +23,9 @@ struct HomeView: View {
                 // Header for Home View
                 homeHeader
                 
+                // Search for Home View
+                SearchBarView(searchText: $vm.searchText)
+                
                 // Columns for the Coins Lables
                 columnTitles
                 
