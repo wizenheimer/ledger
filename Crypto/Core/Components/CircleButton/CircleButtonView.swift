@@ -31,11 +31,11 @@ struct CircleButtonView: View {
 #Preview(traits: .sizeThatFitsLayout) {
     CircleButtonView(iconName: "heart.fill")
         .padding()
-        .colorScheme(.dark)
+        .preferredColorScheme(.dark)
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
     CircleButtonView(iconName: "plus.circle.fill")
         .padding()
-        .colorScheme(.light)
+        .preferredColorScheme(.light)
 }
