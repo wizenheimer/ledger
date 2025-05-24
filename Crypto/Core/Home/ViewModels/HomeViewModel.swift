@@ -12,6 +12,12 @@ class HomeViewModel: ObservableObject {
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     
+    @Published var statistics: [StatisticModel] = [
+        DeveloperPreview.instance.statWithNegativePercentageChange,
+        DeveloperPreview.instance.statWithPositivePercentageChange,
+        DeveloperPreview.instance.statWithNoPercentageChange,
+    ]
+    
     @Published var searchText: String = ""
     
     private let dataService = CoinDataService()

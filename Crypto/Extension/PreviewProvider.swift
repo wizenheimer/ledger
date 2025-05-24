@@ -52,5 +52,21 @@ class DeveloperPreview {
         currentHoldings: 1.5
     )
     
-    let homeVM = HomeViewModel()
+    let statWithPositivePercentageChange = StatisticModel(title: "Market Cap", value: "$27Bn", percentageChange: 25.34)
+    
+    let statWithNegativePercentageChange = StatisticModel(title: "Swing Volume", value: "$4Bn", percentageChange: -42.34)
+    
+    let statWithNoPercentageChange = StatisticModel(title: "Total Volume", value: "$27Bn")
+    
+    lazy var homeVM: HomeViewModel = {
+        let vm = HomeViewModel()
+        vm.statistics = [
+            statWithNegativePercentageChange,
+            statWithPositivePercentageChange,
+            statWithNoPercentageChange,
+            statWithNoPercentageChange,
+            statWithNegativePercentageChange,
+        ]
+        return vm
+    }()
 }

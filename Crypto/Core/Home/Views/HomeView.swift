@@ -23,6 +23,9 @@ struct HomeView: View {
                 // Header for Home View
                 homeHeader
                 
+                // Home Stats View
+                HomeStatsView()
+                
                 // Search for Home View
                 SearchBarView(searchText: $vm.searchText)
                 
