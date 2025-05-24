@@ -6,15 +6,28 @@
 //
 
 import Foundation
+import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     
+    private let dataService = CoinDataService()
+    
+    // this is made private because we don't want the callers
+    // to own cancellation triggers via Home View Model
+    private var cancellables = Set<AnyCancellable>()
+    
     init() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.portfolioCoins.append(DeveloperPreview.instance.coin)
-        }
+        addSubscribers()
+    }
+    
+    func addSubscribers() {
+        // Subscribe to the dataServices's allCoins
+        dataService.$allCoins
+            .sink { [weak self](returnedCoins) in
+                self?.allCoins = returnedCoins
+            }
+            .store(in: &cancellables)
     }
 }
