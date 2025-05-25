@@ -30,4 +30,8 @@ class MarketDataService {
                     self?.marketDataSubscription?.cancel()
             })
     }
+    
+    func refresh() {
+        getMarketData()
+    }
 }

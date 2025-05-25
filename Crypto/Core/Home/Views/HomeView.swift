@@ -112,6 +112,14 @@ extension HomeView {
             
         }
         .listStyle(.plain)
+        .refreshable {
+            await Task {
+                vm.reloadData()
+                // Small delay to let the refresh indicator show properly
+                try? await Task.sleep(nanoseconds: 300_000_000)
+                // 0.3 seconds
+            }.value
+        }
     }
     
     private var portfolioCoinsList: some View {
@@ -128,6 +136,14 @@ extension HomeView {
             
         }
         .listStyle(.plain)
+        .refreshable {
+            await Task {
+                vm.reloadData()
+                // Small delay to let the refresh indicator show properly
+                try? await Task.sleep(nanoseconds: 300_000_000)
+                // 0.3 seconds
+            }.value
+        }
     }
     
     private var columnTitles: some View {
@@ -139,6 +155,20 @@ extension HomeView {
             }
             Text("Price")
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            
+            Button(
+                action: {
+                    withAnimation(.linear(duration: 2.0)) {
+                        vm.reloadData()
+                    }
+                }, label: {
+                    Image(systemName: "goforward")
+                }
+            )
+            .rotationEffect(
+                Angle(degrees: vm.isLoading ? 360 : 0),
+                anchor: .center
+            )
         }
         .font(.caption)
         .foregroundColor(Color.theme.secondaryText)

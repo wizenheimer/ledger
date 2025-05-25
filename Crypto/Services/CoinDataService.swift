@@ -33,4 +33,8 @@ class CoinDataService {
                 self?.coinSubscription?.cancel()
             })
     }
+    
+    func refresh() {
+        getCoins()
+    }
 }
